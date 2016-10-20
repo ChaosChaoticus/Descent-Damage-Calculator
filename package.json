@@ -1,12 +1,12 @@
 {
-  "name": "descent-calculator",
+  "name": "Descent-Damage-Calculator",
   "version": "1.0.0",
   "description": "Calculates damage and skill probabilities for the board game Descent 2nd Edition.",
-  "homepage": "http://mattyellen.github.io/imperial-assault-calculator",
+  "homepage": "http://chaoschaoticus.github.io/Descent-Damage-Calculator",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com/mattyellen/imperial-assault-calculator"
+    "url": "https://github.com/ChaosChaoticus/Descent-Damage-Calculator"
   },
   "scripts": {
     "install-all": "npm install && jspm install && tsd install"

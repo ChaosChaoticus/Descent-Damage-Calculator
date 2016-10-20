@@ -1,7 +1,7 @@
 # Damage Calculator for Descent 2nd Edition
 
-Plug in your attack dice, defense dice, and surge abilities and the calculator will tell you how much damage you are likely to do.
-See:
-http://chaoticus.github.io/Descent-calculator/
+Select your attack and power dice, defense dice, surge abilities and othe modificators.
+The calculator will tell you how much damage you are likely to do.
+See: https://chaoschaoticus.github.io/Descent-Damage-Calculator/
 
-The code is adapted from matt yellen's Imperial Assault Calculator (http://mattyellen.github.io/imperial-assault-calculator/) 
+This code is adapted from Matt Yellen's Imperial Assault Calculator (http://mattyellen.github.io/imperial-assault-calculator/) 
