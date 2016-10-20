@@ -1,0 +1,80 @@
+<template>
+    <require from='../components/probability-chart'></require>
+
+    <div class="main-container">
+        <div class="row dice-button-row">
+
+            <span class="dice-button-span">
+                <button class="btn dice-button dice-button-brown dice-button-dark"
+                        data-toggle="tooltip"
+                        title="Brown Defence Dice"
+                        click.delegate="addDie('brown')">
+                    ${diceCount.brown}
+                </button>
+                <button class="btn dice-button dice-button-grey dice-button-light"
+                        data-toggle="tooltip"
+                        title="Grey Defence Dice"
+                        click.delegate="addDie('grey')">
+                    ${diceCount.grey}
+                </button>
+                <button class="btn dice-button dice-button-black dice-button-dark"
+                        data-toggle="tooltip"
+                        title="Black Defence Dice"
+                        click.delegate="addDie('black')">
+                    ${diceCount.black}
+                </button>
+
+
+                <button class="btn btn-default defense-button"
+                        data-toggle="tooltip"
+                        title="Add Defence"
+                        click.delegate="addDefenseProperty('block')">
+                    +${fixedDefenseAbility.block}
+                    <img class="img-icon-defense" src="images/block.png" />
+                </button>
+
+                <button class="btn btn-default button-cancel"
+                        data-toggle="tooltip"
+                        title="Clear Defense Values"
+                        click.delegate="resetDefenseDice()">
+                    <span class="fa fa-times"></span>
+                </button>
+            </span>
+        </div>
+        <div class="row calculate-button-row">
+            <span class="dice-button-span">
+                <button class="btn btn-default calculate-button" click.delegate="calculateResult()">CALCULATE</button>
+                <button class="btn btn-default button-cancel"
+                        data-toggle="tooltip"
+                        title="Clear Chart"
+                        click.delegate="probabilityChart.resetChart()">
+                    <span class="fa fa-times"></span>
+                </button>
+            </span>
+        </div>
+
+        <div class="row calculate-button-row">
+            <span class="dice-button-span">
+            <div class="col-xs-6 attack-type-button-col">
+                <button class="btn btn-default plot-type-button ${(probabilityChart.plottype == 'CP') ? 'plot-type-selected' : ''}"
+                        data-toggle="tooltip"
+                        title="Cummulative Probability"
+                        click.delegate="probabilityChart.selectPlotType('CP')">
+                        CP
+                </button>
+            </div>
+            <div class="col-xs-6 attack-type-button-col">
+                <button class="btn btn-default plot-type-button ${(probabilityChart.plottype == 'AP') ? 'plot-type-selected' : ''}"
+                        data-toggle="tooltip"
+                        title="Absolute Probability"
+                        click.delegate="probabilityChart.selectPlotType('AP')">
+                        AP
+                </button>
+            </div>
+            </span>
+        </div>
+
+    <probability-chart title="% Chance to deflect (at least) X Damage" x-label="x (or more) total damage deflected" y-label="chance (%)" probability-chart.ref="probabilityChart"/>
+
+    
+</template>
