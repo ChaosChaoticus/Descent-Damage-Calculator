@@ -2,8 +2,9 @@
     <require from='../components/probability-chart'></require>
 
     <div class="main-container">
+
+
         <div class="row attack-type-row">
-            
             <div class="col-xs-6 attack-type-button-col">
                 <button class="btn btn-default attack-type-button ${(attack_type == 'melee') ? 'attack-type-selected' : ''}"
                         data-toggle="tooltip"
@@ -22,18 +23,18 @@
                 </button>
             </div>
         </div>
+
+
         <div class="row dice-button-row">
             <span class="dice-button-span">
-
-
-                <button class="btn dice-button dice-button-blue dice-button-dark" 
+                <button class="btn dice-button dice-button-blue dice-button-dark"
                         data-toggle="tooltip"
                         title="Attack Dice"
                         click.delegate="addDie('blue')">
                     ${diceCount.blue}
                 </button>
-                <button class="btn dice-button dice-button-red dice-button-dark" 
-                        data-toggle="tooltip" 
+                <button class="btn dice-button dice-button-red dice-button-dark"
+                        data-toggle="tooltip"
                         title="Red Power Dice"
                         click.delegate="addDie('red')">
                     ${diceCount.red}
@@ -44,7 +45,7 @@
                         click.delegate="addDie('yellow')">
                     ${diceCount.yellow}
                 </button>
-                <button class="btn dice-button dice-button-green dice-button-light" 
+                <button class="btn dice-button dice-button-green dice-button-light"
                         data-toggle="tooltip"
                         title="Green Power Dice"
                         click.delegate="addDie('green')">
@@ -60,6 +61,8 @@
                 </button>
             </span>
         </div>
+
+
         <div class="row dice-button-row">
             <span class="surge-ability-span">
                 <button class="btn btn-default surge-button"
@@ -92,6 +95,8 @@
                 </button>
             </span>
         </div>
+
+
         <div class="row add-surge-button-row">
             <div class="col-xs-6 surge-ability-button-col">
                 <button class="btn btn-default surge-button"
@@ -110,7 +115,9 @@
                 </button>
             </div>
         </div>
-        <div class="row add-surge-button-row">            
+
+
+        <div class="row add-surge-button-row">
             <div class="col-xs-6 surge-ability-button-col">
                 <button class="btn btn-default surge-button"
                         data-toggle="tooltip"
@@ -118,13 +125,15 @@
                         click.delegate="addNewSurge(3)">
                     + <img class="img-icon-surge" src="images/triple_surge.png" /> Ability
                 </button>
-            </div> 
-        </div>           
+            </div>
+        </div>
+
+
         <div class="row dice-button-row" repeat.for="surge of surgeAbilities">
             <span class="surge-ability-span">
                 <img class="img-icon-surge" src="images/surge.png" if.bind="surge.surgeCost == 1"/>
                 <img class="img-icon-surge" src="images/double_surge.png" if.bind="surge.surgeCost == 2"/>
-                <img class="img-icon-surge" src="images/triple_surge.png" if.bind="surge.surgeCost == 3"/>                
+                <img class="img-icon-surge" src="images/triple_surge.png" if.bind="surge.surgeCost == 3"/>
                 <button class="btn btn-default surge-button"
                         data-toggle="tooltip"
                         title="Surge For Damage"
@@ -153,6 +162,29 @@
                 </button>
             </span>
         </div>
+
+
+        <div class="row dice-button-row">
+          <span class="dice-button-span">
+            <div class="tag">Reroll Attack Die on X</div>
+            <input type="checkbox"
+            id="checkbox-reroll_blue"
+            class="regular-checkbox"
+            click.delegate="checkbox_handler1()">
+            <label for="checkbox-reroll_blue"></label>
+          </div>
+
+          <div class="row dice-button-row">
+          <span class="dice-button-span">
+            <div class="tag">Set Attack Die on X</div>
+            <input type="checkbox"
+            id="checkbox-set_blue"
+            class="regular-checkbox"
+            click.delegate="checkbox_handler2()">
+            <label for="checkbox-set_blue"></label>
+        </div>
+
+
         <div class="row dice-button-row">
             <span class="dice-button-span">
 
@@ -206,7 +238,8 @@
 
 
         <div class="row calculate-button-row">
-            <div class="col-xs-2 plot-type-button-col">
+          <span class="dice-button-span">
+          <div class="col-xs-6 attack-type-button-col">
                 <button class="btn btn-default plot-type-button ${(probabilityChart.plot_type == 'CP') ? 'plot-type-selected' : ''}"
                         data-toggle="tooltip"
                         title="Cummulative Probability"
@@ -214,7 +247,7 @@
                         CP
                 </button>
             </div>
-            <div class="col-xs-2 plot-type-button-col">
+            <div class="col-xs-6 attack-type-button-col">
                 <button class="btn btn-default plot-type-button ${(probabilityChart.plot_type == 'AP') ? 'plot-type-selected' : ''}"
                         data-toggle="tooltip"
                         title="Absolute Probability"
@@ -222,10 +255,10 @@
                         AP
                 </button>
             </div>
+    </div>
 
-        
 <probability-chart title="% Chance to deal (at least) X Damage" x-label="x (or more) total damage dealt" y-label="chance (%)" probability-chart.ref="probabilityChart"/>
 
+</div>
 
-    </div>
 </template>

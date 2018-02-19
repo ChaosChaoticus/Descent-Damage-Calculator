@@ -12,12 +12,35 @@ var PossibleRolls = (function () {
                 new RollResult_1.RollResult(false, 1, 0, 5, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 1, 1, 6, 0, 1 / 6)
             ],
+            blue_reroll: [
+                // miss, damage, surge, range, block, probability
+                new RollResult_1.RollResult(true , 0, 0, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 2, 1, 2, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 2, 0, 3, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 2, 0, 4, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 0, 5, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 1, 6, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 2, 1, 2, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 2, 0, 3, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 2, 0, 4, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 0, 5, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 1, 6, 0, 1 / 6)
+            ],
+            blue_set: [
+                // miss, damage, surge, range, block, probability
+                new RollResult_1.RollResult(false, 2, 1, 2, 0, 1 / 6), // x replaced by 2damage, 2range, 1 surge
+                new RollResult_1.RollResult(false, 2, 1, 2, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 2, 0, 3, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 2, 0, 4, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 0, 5, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 1, 6, 0, 1 / 6)
+            ],
             red: [
                 new RollResult_1.RollResult(false, 1, 0, 0, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 2, 0, 0, 0, 3 / 6),
                 new RollResult_1.RollResult(false, 3, 0, 0, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 3, 1, 0, 0, 1 / 6)
-            ],            
+            ],
             yellow: [
                 new RollResult_1.RollResult(false, 0, 1, 1, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 1, 0, 1, 0, 1 / 6),
@@ -33,7 +56,7 @@ var PossibleRolls = (function () {
                 new RollResult_1.RollResult(false, 1, 0, 1, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 1, 1, 0, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 1, 1, 1, 0, 1 / 6)
-            ],            
+            ],
             brown: [
                 new RollResult_1.RollResult(false, 0, 0, 0, 0, 3 / 6),
                 new RollResult_1.RollResult(false, 0, 0, 0, 1, 2 / 6),
@@ -50,7 +73,7 @@ var PossibleRolls = (function () {
                 new RollResult_1.RollResult(false, 0, 0, 0, 2, 3 / 6),
                 new RollResult_1.RollResult(false, 0, 0, 0, 3, 1 / 6),
                 new RollResult_1.RollResult(false, 0, 0, 0, 4, 1 / 6)
-            ]            
+            ]
         };
         this._possibleRolls = {};
         var initRollResult = new RollResult_1.RollResult();
@@ -66,7 +89,7 @@ var PossibleRolls = (function () {
         }
     };
 
-    // Apply new Roll  
+    // Apply new Roll
     PossibleRolls.prototype.applyNewRoll = function (newRoll) {
         var newPossibleRolls = {};
         for (var prKey in this._possibleRolls) {
@@ -154,14 +177,56 @@ var PossibleRolls = (function () {
             var rollResult = this._possibleRolls[prKey];
             var calcDefenceResult = Object.assign({}, rollResult);
             calcDefenceResult.block += fixedDefenseAbility.block;
-            var maxDefence = calcDefenceResult.block
-            
+            var maxDefence = calcDefenceResult.block;
+
             //console.log("maxDamage: %d", maxDefence);                                    // updateValue(dict, key, value)
             this.updateValue(deflectedDamage, maxDefence, calcDefenceResult.probability);  // really update the probability?
             }
         return deflectedDamage; // Does NOT return actual number of shields, but propabilities to get shields!
     };
 
+    ////////////////////////////////////////////////////////////////////////////
+    PossibleRolls.prototype.getAttributeResults = function (Attribute_to_Test) {
+        //awareness,knowledge,migth,willpower
+        var AttributeSuccess = {};
+        var counter=0;
+        var thisAttributeProb=0.;
+
+        var awareness=Attribute_to_Test.Awareness;
+        var knowledge=Attribute_to_Test.Knowledge;
+        var might=Attribute_to_Test.Might;
+        var willpower=Attribute_to_Test.Willpower;
+
+        for (var prKey in this._possibleRolls) {
+              var rollResult = this._possibleRolls[prKey];
+              var calcDefenceResult = Object.assign({}, rollResult);
+              thisAttributeProb = thisAttributeProb+calcDefenceResult.probability
+
+              if (counter==awareness){
+                var thisAttribute = 1; // 1=awareness, 2=knowledge, 3=might; 4=willpower
+                this.updateValue(AttributeSuccess, thisAttribute, thisAttributeProb);
+              }
+              if (counter==knowledge){
+                var thisAttribute = 2; // 1=awareness, 2=knowledge, 3=might; 4=willpower
+                this.updateValue(AttributeSuccess, thisAttribute, thisAttributeProb);
+              }
+              if (counter==might){
+                var thisAttribute = 3; // 1=awareness, 2=knowledge, 3=might; 4=willpower
+                this.updateValue(AttributeSuccess, thisAttribute, thisAttributeProb);
+              }
+              if (counter==willpower){
+                var thisAttribute = 4; // 1=awareness, 2=knowledge, 3=might; 4=willpower
+                this.updateValue(AttributeSuccess, thisAttribute, thisAttributeProb);
+              }
+
+            counter++;
+            }
+
+        return AttributeSuccess; // Does NOT return actual number of shields, but propabilities to get shields!
+
+
+    };
+    ////////////////////////////////////////////////////////////////////////////
 
     PossibleRolls.prototype.getDamage = function (rollResult, needRange) {
         if (rollResult.range < needRange) {
@@ -175,7 +240,7 @@ var PossibleRolls = (function () {
     // Very simple, I don't need a fun
     //PossibleRolls.prototype.getDefence = function (rollResult) {
     //        return rollResult.block;
-    //};    
+    //};
 
     // Apply surge Ability
     PossibleRolls.prototype.applySurgeAbility = function (rollResult, surgeAbility) {

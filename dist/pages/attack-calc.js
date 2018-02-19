@@ -6,6 +6,9 @@ var AttackProperty_1 = require("../util/AttackProperty");
 var Dice_1 = require("../util/Dice");
 require("Chart.js");
 require('jquery');
+
+
+
 var AttackCalc = (function () {
     function AttackCalc() {
         this.diceCount = new Dice_1.Dice();
@@ -33,6 +36,30 @@ var AttackCalc = (function () {
     AttackCalc.prototype.addDie = function (type) {
         this.diceCount[type]++;
     };
+
+    AttackCalc.prototype.checkbox_handler1 = function () {
+      if (document.getElementById("checkbox-reroll_blue").checked)
+      {
+        this.RemoveDie1_addDie2('blue','blue_reroll');
+      }else{
+        this.RemoveDie1_addDie2('blue_reroll','blue');
+      }
+    };
+
+    AttackCalc.prototype.checkbox_handler2 = function () {
+      if (document.getElementById("checkbox-set_blue").checked)
+      {
+        this.RemoveDie1_addDie2('blue','blue_set');
+      }else{
+        this.RemoveDie1_addDie2('blue_set','blue');
+      }
+    };
+
+
+    AttackCalc.prototype.RemoveDie1_addDie2 = function (type1,type2) {
+        this.diceCount[type1]--;
+        this.diceCount[type2]++;
+    };
     AttackCalc.prototype.addDefenseProperty = function (type) {
         this.fixedDefenseAbility[type]++;
     };
@@ -44,9 +71,11 @@ var AttackCalc = (function () {
     };
     AttackCalc.prototype.resetAttackDice = function () {
         this.diceCount.blue = 0;
+        this.diceCount.blue_reroll = 0;
+        this.diceCount.blue_set = 0;
         this.diceCount.red = 0;
         this.diceCount.yellow = 0;
-        this.diceCount.green = 0;        
+        this.diceCount.green = 0;
         this.fixedAttackAbility = {
             damage: 0,
             pierce: 0,
@@ -55,7 +84,7 @@ var AttackCalc = (function () {
             miss: 0
         };
     };
-    AttackCalc.prototype.resetDefenseDice = function () {       
+    AttackCalc.prototype.resetDefenseDice = function () {
         this.diceCount.brown = 0;
         this.diceCount.grey = 0;
         this.diceCount.black = 0;
@@ -63,6 +92,7 @@ var AttackCalc = (function () {
             block: 0
         };
     };
+
     AttackCalc.prototype.calculateResult = function () {
         var possibleRolls = new PossibleRolls_1.PossibleRolls();
         possibleRolls.applyAllRolls(this.diceCount);

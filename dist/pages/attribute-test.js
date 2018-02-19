@@ -12,9 +12,16 @@ var AttributeTest = (function () {
         this.resetDice();
         this.resetValue();
     }
-    AttributeTest.prototype.attached = function () {
-        $('[data-toggle="tooltip"]').tooltip({ container: "body", delay: { show: 500 } });
+
+    AttributeTest.prototype.addDie = function (type) {
+        this.diceCount[type]++;
     };
+
+
+    AttributeTest.prototype.addAttribute_to_Test = function (type) {
+        this.Value_to_Test[type]++;
+    };
+
     AttributeTest.prototype.resetDice = function () {
         // Standard: 1 black, 1 grey
         // I need right click to count down this way!
@@ -27,28 +34,26 @@ var AttributeTest = (function () {
         this.Value_to_Test.Might     = 0;
         this.Value_to_Test.Willpower = 0;
     };
-    AttributeTest.prototype.addDie = function (type) {
-        this.diceCount[type]++;
-    };
-    AttributeTest.prototype.addAttribute_to_Test = function (type) {
-        this.Value_to_Test[type]++;        
-    };
+
 
     // Dont know what that does
     // Should go to probabilityChart_Attribute
-    AttributeTest.prototype.setChartDisplay = function (val) {
-        var chartContainer = $("#chartContainer").get(0);
-        if (chartContainer !== undefined) {
-            chartContainer.style.display = val ? "block" : "none";
-        }
-    };
+    //AttributeTest.prototype.setChartDisplay = function (val) {
+    //    var chartContainer = $("#chartContainer").get(0);
+    //    if (chartContainer !== undefined) {
+    //        chartContainer.style.display = val ? "block" : "none";
+    //    };
 
 
-    // IA tests scheinen ueber surges zu laufen. Hier muss ich was aendern.
     AttributeTest.prototype.calculateResult = function () {
         var possibleRolls = new PossibleRolls_1.PossibleRolls();
         possibleRolls.applyAllRolls(this.diceCount);
-        this.probabilityChart.addChartData(possibleRolls.getDeflectedDamage()); // Does this work without argument?
+        //possibleRolls.showProb();
+        var shields = possibleRolls.getAttributeResults(this.Value_to_Test);
+        // I need to transform the shields rolled into sucess propabilities and display these
+        this.probabilityChart.selectPlotType('PC')
+        this.probabilityChart.addChartData(shields); // Does this work without argument?
+
     };
     return AttributeTest;
 }());

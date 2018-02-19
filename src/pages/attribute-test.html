@@ -3,15 +3,14 @@
 
     <div class="main-container">
 
-
-   <div class="row dice-button-row">
+      <div class="row dice-button-row">
             <span class="surge-ability-span">
                 <button class="btn btn-default surge-button"
                         data-toggle="tooltip"
                         title="Set Awareness"
                         click.delegate="addAttribute_to_Test('Awareness')">
                     ${Value_to_Test.Awareness}
-                    <img class="img-icon-damage" src="images/Stat_Awareness.png" />                                       
+                    <img class="img-icon-damage" src="images/Stat_Awareness.png" />
                 </button>
 
 
@@ -20,7 +19,7 @@
                         title="Set Knowledge"
                         click.delegate="addAttribute_to_Test('Knowledge')">
                     ${Value_to_Test.Knowledge}
-                    <img class="img-icon-damage" src="images/Stat_Knowledge.png" />                               
+                    <img class="img-icon-damage" src="images/Stat_Knowledge.png" />
                 </button>
 
 
@@ -29,7 +28,7 @@
                         title="Set Might"
                         click.delegate="addAttribute_to_Test('Might')">
                     ${Value_to_Test.Might}
-                    <img class="img-icon-damage" src="images/Stat_Might.png" />                             
+                    <img class="img-icon-damage" src="images/Stat_Might.png" />
                 </button>
 
                 <button class="btn btn-default surge-button"
@@ -37,8 +36,8 @@
                         title="Set Willpower"
                         click.delegate="addAttribute_to_Test('Willpower')">
                     ${Value_to_Test.Willpower}
-                    <img class="img-icon-damage" src="images/Stat_Willpower.png" />                              
-                </button>                                
+                    <img class="img-icon-damage" src="images/Stat_Willpower.png" />
+                </button>
 
 
                 <button class="btn btn-default button-cancel"
@@ -87,8 +86,7 @@
                 </button>
             </span>
         </div>
-        <probability-chart title="% Chance to get X Successes" 
-                           x-label="Number of Successes" 
-                           probability-chart.ref="probabilityChart" />
+
+        <probability-chart title="% Chance for Success" x-label="Attribute (Str,Aware,Will,Know)" probability-chart.ref="probabilityChart" />
     </div>
 </template>

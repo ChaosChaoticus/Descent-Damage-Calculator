@@ -112,7 +112,8 @@ var ProbabilityChart = (function () {
         }
         this._rawChartData.push(newChartData);
         var minValue = 0;
-        if (this._plottype === 'CP'){minValue=1}
+        if (this._plottype === 'CP'){minValue=1};  // Cummulative Propability
+        if (this._plottype === 'PC'){minValue=1}; // Propability chart
         var maxValue = this._chartMaxDamage;
         for (var v in newChartData) {
             maxValue = Math.max(maxValue, Number(v));
@@ -130,7 +131,7 @@ var ProbabilityChart = (function () {
             // For cummulative Probs
             cumulativeProb += (newChartData[i] === undefined) ? 0 : newChartData[i];
             }
-            else {
+            else{
             // For Absolute Probs (individual). Set min(data) to 0!
             cumulativeProb = (newChartData[i] === undefined) ? 0 : newChartData[i];
             }
@@ -171,22 +172,22 @@ var ProbabilityChart = (function () {
     };
 
     __decorate([
-        aurelia_framework_1.bindable, 
+        aurelia_framework_1.bindable,
         __metadata('design:type', String)
     ], ProbabilityChart.prototype, "title", void 0);
 
     __decorate([
-        aurelia_framework_1.bindable, 
+        aurelia_framework_1.bindable,
         __metadata('design:type', String)
     ], ProbabilityChart.prototype, "xLabel", void 0);
 
     __decorate([
-        aurelia_framework_1.bindable, 
+        aurelia_framework_1.bindable,
         __metadata('design:type', String)
-    ], ProbabilityChart.prototype, "yLabel", void 0);   
+    ], ProbabilityChart.prototype, "yLabel", void 0);
 
     ProbabilityChart = __decorate([
-        __param(0, aurelia_dependency_injection_1.inject), 
+        __param(0, aurelia_dependency_injection_1.inject),
         __metadata('design:paramtypes', [Element])
     ], ProbabilityChart);
 
