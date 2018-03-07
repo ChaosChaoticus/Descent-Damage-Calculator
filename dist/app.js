@@ -11,6 +11,7 @@ var App = (function () {
             { route: 'surge-calc'    , name: 'surge-calc'      , moduleId: 'pages/surge-calc'    , nav: true, title: 'Surges' },
             { route: 'defence-calc'  , name: 'defence-calc'    , moduleId: 'pages/defence-calc'  , nav: true, title: 'Defence' },
             { route: 'attribute-test', name: 'attribute-test'  , moduleId: 'pages/attribute-test', nav: true, title: 'Attribute Test' },
+            { route: 'info'          , name: 'info'            , moduleId: 'pages/info'          , nav: true, title: 'Info' },
         ]);
         this.router = router;
     };

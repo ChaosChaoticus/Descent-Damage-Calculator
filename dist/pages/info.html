@@ -1,0 +1,38 @@
+<template>
+    <require from='../components/probability-chart'></require>
+
+    <div class="main-container">
+        <div class="row dice-button-row">
+
+            <span class="dice-button-span">
+
+                <p><b>Descent Damage Calculator V1.2</b></p>
+
+                <p>Calculates Propabilities to deal damage, roll defence, roll surges and to pass attribute tests.</p>
+
+
+                <p>Two plots can be drawn:</p>
+                <p>1. Absolute Propabilitiy:<br>
+                This is the propability to deal exactly X amount of damage(roll shields/surges etc.)</p>
+                <p>2. Cummulative propability:<br>
+                This is the propability to deal at least x amount of damage(roll shields/surges etc.)</p>
+
+
+                <p>For the rerolls and set dice, I had to make a few assumptions, lest the program would be quite a bit more complicated.<br>
+                1. For the rerolls, they are rolled only if the worst result is rolled. This means:<br>
+                  blue: X<br>
+                  red: 1 damage<br>
+                  yellow: 1 damage<br>
+                  green: 1 damage<br>
+                  brown/grey/black: blank<br>
+                2. For the set dice I am assuming that an ability lets you set the dice if you roll X or blanks or otherwise the worst face. Hence, the worst result is replaced with the best one.<br>
+                3. Mark the fact that range is not taken into account for these considerations. Hence, the displayed damage propabilities for long-range attacks would be higher than displayed as X is replaced by the face with range 2.
+                </p>
+
+            </span>
+        </div>
+
+
+
+
+</template>

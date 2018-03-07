@@ -7,7 +7,10 @@ var Dice_1 = require("../util/Dice");
 require("Chart.js");
 require('jquery');
 
-
+var lock_re_att =false
+var lock_set_att=false
+var lock_re_def =false
+var lock_set_def=false
 
 var AttackCalc = (function () {
     function AttackCalc() {
@@ -15,6 +18,10 @@ var AttackCalc = (function () {
         this.resetAttackDice();
         this.resetDefenseDice();
         this.surgeAbilities = [];
+        this.AddedDice_re_att  = [];
+        this.AddedDice_set_att = [];
+        this.AddedDice_re_def  = [];
+        this.AddedDice_set_def = [];
         this.attack_type = "melee";
         this.range = 0;
     }
@@ -37,29 +44,6 @@ var AttackCalc = (function () {
         this.diceCount[type]++;
     };
 
-    AttackCalc.prototype.checkbox_handler1 = function () {
-      if (document.getElementById("checkbox-reroll_blue").checked)
-      {
-        this.RemoveDie1_addDie2('blue','blue_reroll');
-      }else{
-        this.RemoveDie1_addDie2('blue_reroll','blue');
-      }
-    };
-
-    AttackCalc.prototype.checkbox_handler2 = function () {
-      if (document.getElementById("checkbox-set_blue").checked)
-      {
-        this.RemoveDie1_addDie2('blue','blue_set');
-      }else{
-        this.RemoveDie1_addDie2('blue_set','blue');
-      }
-    };
-
-
-    AttackCalc.prototype.RemoveDie1_addDie2 = function (type1,type2) {
-        this.diceCount[type1]--;
-        this.diceCount[type2]++;
-    };
     AttackCalc.prototype.addDefenseProperty = function (type) {
         this.fixedDefenseAbility[type]++;
     };
@@ -69,13 +53,83 @@ var AttackCalc = (function () {
     AttackCalc.prototype.removeSurge = function (surge) {
         this.surgeAbilities = this.surgeAbilities.filter(function (p) { return p != surge; });
     };
+
+    AttackCalc.prototype.addNewRerollDiceAttack = function (dummyarg) {
+        if (lock_re_att==false){
+          this.AddedDice_re_att.push(new Dice_1.Dice());
+          lock_re_att=true
+        }
+    };
+
+    AttackCalc.prototype.removeRerollDiceAttack = function () {
+        this.AddedDice_re_att = [];
+        this.diceCount.blue_reroll = 0;
+        this.diceCount.red_reroll = 0;
+        this.diceCount.yellow_reroll = 0;
+        this.diceCount.green_reroll = 0;
+        lock_re_att=false
+    };
+
+    AttackCalc.prototype.addNewSetDiceAttack = function (dummyarg) {
+      if (lock_set_att==false){
+        this.AddedDice_set_att.push(new Dice_1.Dice());
+        lock_set_att=true
+      }
+    };
+
+    AttackCalc.prototype.removeSetDiceAttack = function () {
+      this.AddedDice_set_att = [];
+      this.diceCount.blue_set = 0;
+      this.diceCount.red_set = 0;
+      this.diceCount.yellow_set = 0;
+      this.diceCount.green_set = 0;
+      lock_set_att=false
+    };
+
+    AttackCalc.prototype.addNewRerollDiceDefence = function () {
+      if (lock_re_def==false){
+        this.AddedDice_re_def.push(new Dice_1.Dice());
+        lock_re_def=true
+      }
+    };
+
+    AttackCalc.prototype.removeRerollDiceDefence = function () {
+      this.AddedDice_re_def = [];
+      this.diceCount.brown_reroll = 0;
+      this.diceCount.grey_reroll = 0;
+      this.diceCount.black_reroll = 0;
+      lock_re_def=false
+    };
+
+    AttackCalc.prototype.addNewSetDiceDefence = function () {
+      if (lock_set_def==false){
+        this.AddedDice_set_def.push(new Dice_1.Dice());
+        lock_set_def=true
+      }
+    };
+
+
+    AttackCalc.prototype.removeSetDiceDefence = function () {
+      this.AddedDice_set_def = [];
+      this.diceCount.brown_set = 0;
+      this.diceCount.grey_set = 0;
+      this.diceCount.black_set = 0;
+      lock_set_def=false
+    };
+
     AttackCalc.prototype.resetAttackDice = function () {
         this.diceCount.blue = 0;
-        this.diceCount.blue_reroll = 0;
-        this.diceCount.blue_set = 0;
         this.diceCount.red = 0;
         this.diceCount.yellow = 0;
         this.diceCount.green = 0;
+        this.diceCount.blue_reroll = 0;
+        this.diceCount.red_reroll = 0;
+        this.diceCount.yellow_reroll = 0;
+        this.diceCount.green_reroll = 0;
+        this.diceCount.blue_set = 0;
+        this.diceCount.red_set = 0;
+        this.diceCount.yellow_set = 0;
+        this.diceCount.green_set = 0;
         this.fixedAttackAbility = {
             damage: 0,
             pierce: 0,
@@ -88,6 +142,12 @@ var AttackCalc = (function () {
         this.diceCount.brown = 0;
         this.diceCount.grey = 0;
         this.diceCount.black = 0;
+        this.diceCount.brown_reroll = 0;
+        this.diceCount.grey_reroll = 0;
+        this.diceCount.black_reroll = 0;
+        this.diceCount.brown_set = 0;
+        this.diceCount.grey_set = 0;
+        this.diceCount.black_set = 0;
         this.fixedDefenseAbility = {
             block: 0
         };

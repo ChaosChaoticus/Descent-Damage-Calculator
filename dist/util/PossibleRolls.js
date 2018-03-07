@@ -41,8 +41,44 @@ var PossibleRolls = (function () {
                 new RollResult_1.RollResult(false, 3, 0, 0, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 3, 1, 0, 0, 1 / 6)
             ],
+            red_reroll: [
+                new RollResult_1.RollResult(false, 1, 0, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 2, 0, 0, 0, 3 / 36),
+                new RollResult_1.RollResult(false, 3, 0, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 3, 1, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 2, 0, 0, 0, 3 / 6),
+                new RollResult_1.RollResult(false, 3, 0, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 3, 1, 0, 0, 1 / 6)
+            ],
+            red_set: [
+                new RollResult_1.RollResult(false, 3, 1, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 2, 0, 0, 0, 3 / 6),
+                new RollResult_1.RollResult(false, 3, 0, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 3, 1, 0, 0, 1 / 6)
+            ],
             yellow: [
                 new RollResult_1.RollResult(false, 0, 1, 1, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 0, 1, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 0, 2, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 1, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 2, 0, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 2, 1, 0, 0, 1 / 6)
+            ],
+            yellow_reroll: [
+                new RollResult_1.RollResult(false, 0, 1, 1, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 0, 1, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 0, 2, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 1, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 2, 0, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 2, 1, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 0, 1, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 0, 2, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 1, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 2, 0, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 2, 1, 0, 0, 1 / 6)
+            ],
+            yellow_set: [
+                new RollResult_1.RollResult(false, 2, 1, 0, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 1, 0, 1, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 1, 0, 2, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 1, 1, 0, 0, 1 / 6),
@@ -57,13 +93,63 @@ var PossibleRolls = (function () {
                 new RollResult_1.RollResult(false, 1, 1, 0, 0, 1 / 6),
                 new RollResult_1.RollResult(false, 1, 1, 1, 0, 1 / 6)
             ],
+            green_reroll: [
+                new RollResult_1.RollResult(false, 1, 0, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 1, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 1, 1, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 0, 1, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 1, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 1, 1, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 1, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 0, 1, 1, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 0, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 1, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 1, 1, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 0, 1, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 1, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 1, 1, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 1, 1, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 1, 1, 0, 1 / 6)
+            ],
+            green_set: [
+                new RollResult_1.RollResult(false, 0, 1, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 0, 1, 1, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 1, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 1, 1, 1, 0, 3 / 6)
+            ],
             brown: [
                 new RollResult_1.RollResult(false, 0, 0, 0, 0, 3 / 6),
                 new RollResult_1.RollResult(false, 0, 0, 0, 1, 2 / 6),
                 new RollResult_1.RollResult(false, 0, 0, 0, 2, 1 / 6),
             ],
+            brown_reroll: [
+                new RollResult_1.RollResult(false, 0, 0, 0, 0, 9 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 1, 6 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 2, 3 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 1, 2 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 2, 1 / 6),
+            ],
+            brown_set: [
+                new RollResult_1.RollResult(false, 0, 0, 0, 1, 2 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 2, 4 / 6),
+            ],
             grey: [
                 new RollResult_1.RollResult(false, 0, 0, 0, 0, 1 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 1, 3 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 2, 1 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 3, 1 / 6),
+            ],
+            grey_reroll: [
+                new RollResult_1.RollResult(false, 0, 0, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 1, 3 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 2, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 3, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 1, 3 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 2, 1 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 3, 1 / 6),
+            ],
+            grey_set: [
+                new RollResult_1.RollResult(false, 0, 0, 0, 3, 1 / 6),
                 new RollResult_1.RollResult(false, 0, 0, 0, 1, 3 / 6),
                 new RollResult_1.RollResult(false, 0, 0, 0, 2, 1 / 6),
                 new RollResult_1.RollResult(false, 0, 0, 0, 3, 1 / 6),
@@ -73,7 +159,21 @@ var PossibleRolls = (function () {
                 new RollResult_1.RollResult(false, 0, 0, 0, 2, 3 / 6),
                 new RollResult_1.RollResult(false, 0, 0, 0, 3, 1 / 6),
                 new RollResult_1.RollResult(false, 0, 0, 0, 4, 1 / 6)
-            ]
+            ],
+            black_reroll: [
+                new RollResult_1.RollResult(false, 0, 0, 0, 0, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 2, 3 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 3, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 4, 1 / 36),
+                new RollResult_1.RollResult(false, 0, 0, 0, 2, 3 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 3, 1 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 4, 1 / 6)
+            ],
+            black_set: [
+                new RollResult_1.RollResult(false, 0, 0, 0, 2, 3 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 3, 1 / 6),
+                new RollResult_1.RollResult(false, 0, 0, 0, 4, 2 / 6)
+            ],
         };
         this._possibleRolls = {};
         var initRollResult = new RollResult_1.RollResult();

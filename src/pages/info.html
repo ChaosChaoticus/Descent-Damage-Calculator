@@ -1,0 +1,26 @@
+<template>
+    <require from='../components/probability-chart'></require>
+
+    <div class="main-container">
+
+      <div class="row attack-type-row">
+          <div class="col-xs-6 attack-type-button-col">
+              <button class="btn btn-default attack-type-button ${(attack_type == 'melee') ? 'attack-type-selected' : ''}"
+                      data-toggle="tooltip"
+                      title="Melee Attack"
+                      click.delegate="selectAttackType('melee')">
+                  <img class="img-icon_attacktype" src="images/melee.png" />
+              </button>
+          </div>
+          <div class="col-xs-6 attack-type-button-col">
+              <button class="btn btn-default attack-type-button attack-type-button-range ${(attack_type == 'range') ? 'attack-type-selected' : ''}"
+                      data-toggle="tooltip"
+                      title="Ranged Attack. Set required range"
+                      click.delegate="selectAttackType('range')">
+                  ${range}
+                  <img class="img-icon_attacktype" src="images/ranged.png" />
+              </button>
+          </div>
+      </div>
+
+</template>

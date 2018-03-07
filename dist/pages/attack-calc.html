@@ -63,6 +63,102 @@
         </div>
 
 
+
+
+                <div class="row add-surge-button-row">
+                    <div class="col-xs-6 surge-ability-button-col">
+                        <button class="btn btn-default surge-button"
+                                data-toggle="tooltip"
+                                title="Add Attack Dice with reroll on worst result"
+                                click.delegate="addNewRerollDiceAttack(1)">
+                            Reroll Dice
+                        </button>
+                    </div>
+                    <div class="col-xs-6 surge-ability-button-col">
+                        <button class="btn btn-default surge-button"
+                                data-toggle="tooltip"
+                                title="Add Attack Dice that are Set to best result"
+                                click.delegate="addNewSetDiceAttack(1)">
+                            Set Dice
+                        </button>
+                    </div>
+                </div>
+
+                <div class="row dice-button-row" repeat.for="newdice of AddedDice_re_att">
+                    <span class="surge-ability-span">
+                      <button class="btn dice-button dice-button-blue dice-button-dark"
+                              data-toggle="tooltip"
+                              title="Attack Dice with Reroll"
+                              click.delegate="$parent.addDie('blue_reroll')">
+                          ${$parent.diceCount.blue_reroll}
+                      </button>
+                      <button class="btn dice-button dice-button-red dice-button-dark"
+                              data-toggle="tooltip"
+                              title="Red Power Dice with Reroll"
+                              click.delegate="$parent.addDie('red_reroll')">
+                          ${$parent.diceCount.red_reroll}
+                      </button>
+                      <button class="btn dice-button dice-button-yellow dice-button-light"
+                              data-toggle="tooltip"
+                              title="Yellow Power Dice with Reroll"
+                              click.delegate="$parent.addDie('yellow_reroll')">
+                          ${$parent.diceCount.yellow_reroll}
+                      </button>
+                      <button class="btn dice-button dice-button-green dice-button-light"
+                              data-toggle="tooltip"
+                              title="Green Power Dice with Reroll"
+                              click.delegate="$parent.addDie('green_reroll')">
+                          ${$parent.diceCount.green_reroll}
+                      </button>
+
+                      <button class="btn btn-default button-cancel"
+                              data-toggle="tooltip"
+                              title="Remove Dice with Reroll"
+                              click.delegate="$parent.removeRerollDiceAttack()">
+                          <span class="fa fa-times"></span>
+                      </button>
+                    </span>
+                </div>
+
+                <div class="row dice-button-row" repeat.for="newdice of AddedDice_set_att">
+                    <span class="surge-ability-span">
+                      <button class="btn dice-button dice-button-blue dice-button-dark"
+                              data-toggle="tooltip"
+                              title="Attack Dice that is set on X"
+                              click.delegate="$parent.addDie('blue_set')">
+                          ${$parent.diceCount.blue_set}
+                      </button>
+                      <button class="btn dice-button dice-button-red dice-button-dark"
+                              data-toggle="tooltip"
+                              title="Red Power Dice that is set on worst"
+                              click.delegate="$parent.addDie('red_set')">
+                          ${$parent.diceCount.red_set}
+                      </button>
+                      <button class="btn dice-button dice-button-yellow dice-button-light"
+                              data-toggle="tooltip"
+                              title="Yellow Power Dice that is set on worst"
+                              click.delegate="$parent.addDie('yellow_set')">
+                          ${$parent.diceCount.yellow_set}
+                      </button>
+                      <button class="btn dice-button dice-button-green dice-button-light"
+                              data-toggle="tooltip"
+                              title="Green Power Dice that is set on worst"
+                              click.delegate="$parent.addDie('green_set')">
+                          ${$parent.diceCount.green_set}
+                      </button>
+
+                      <button class="btn btn-default button-cancel"
+                              data-toggle="tooltip"
+                              title="Remove Dice that are Set on worst"
+                              click.delegate="$parent.removeSetDiceAttack()">
+                          <span class="fa fa-times"></span>
+                      </button>
+                    </span>
+                </div>
+
+
+
+
         <div class="row dice-button-row">
             <span class="surge-ability-span">
                 <button class="btn btn-default surge-button"
@@ -128,7 +224,6 @@
             </div>
         </div>
 
-
         <div class="row dice-button-row" repeat.for="surge of surgeAbilities">
             <span class="surge-ability-span">
                 <img class="img-icon-surge" src="images/surge.png" if.bind="surge.surgeCost == 1"/>
@@ -164,25 +259,7 @@
         </div>
 
 
-        <div class="row dice-button-row">
-          <span class="dice-button-span">
-            <div class="tag">Reroll Attack Die on X</div>
-            <input type="checkbox"
-            id="checkbox-reroll_blue"
-            class="regular-checkbox"
-            click.delegate="checkbox_handler1()">
-            <label for="checkbox-reroll_blue"></label>
-          </div>
 
-          <div class="row dice-button-row">
-          <span class="dice-button-span">
-            <div class="tag">Set Attack Die on X</div>
-            <input type="checkbox"
-            id="checkbox-set_blue"
-            class="regular-checkbox"
-            click.delegate="checkbox_handler2()">
-            <label for="checkbox-set_blue"></label>
-        </div>
 
 
         <div class="row dice-button-row">
@@ -224,6 +301,89 @@
                 </button>
             </span>
         </div>
+
+        <div class="row add-surge-button-row">
+            <div class="col-xs-6 surge-ability-button-col">
+                <button class="btn btn-default surge-button"
+                        data-toggle="tooltip"
+                        title="Add Defence Dice with reroll on worst result"
+                        click.delegate="addNewRerollDiceDefence(1)">
+                    Reroll Dice
+                </button>
+            </div>
+            <div class="col-xs-6 surge-ability-button-col">
+                <button class="btn btn-default surge-button"
+                        data-toggle="tooltip"
+                        title="Add Defence Dice that are Set to best result"
+                        click.delegate="addNewSetDiceDefence(1)">
+                    Set Dice
+                </button>
+            </div>
+        </div>
+
+        <div class="row dice-button-row" repeat.for="newdice of AddedDice_re_def">
+            <span class="surge-ability-span">
+              <button class="btn dice-button dice-button-brown dice-button-dark"
+                      data-toggle="tooltip"
+                      title="Brown Defence Die with Reroll"
+                      click.delegate="$parent.addDie('brown_reroll')">
+                  ${$parent.diceCount.brown_reroll}
+              </button>
+              <button class="btn dice-button dice-button-grey dice-button-light"
+                      data-toggle="tooltip"
+                      title="Grey Defence Die with Reroll"
+                      click.delegate="$parent.addDie('grey_reroll')">
+                  ${$parent.diceCount.grey_reroll}
+              </button>
+              <button class="btn dice-button dice-button-black dice-button-dark"
+                      data-toggle="tooltip"
+                      title="Black Defence Die with Reroll"
+                      click.delegate="$parent.addDie('black_reroll')">
+                  ${$parent.diceCount.black_reroll}
+              </button>
+
+              <button class="btn btn-default button-cancel"
+                      data-toggle="tooltip"
+                      title="Remove Dice with Reroll"
+                      click.delegate="$parent.removeRerollDiceDefence()">
+                  <span class="fa fa-times"></span>
+              </button>
+            </span>
+        </div>
+
+        <div class="row dice-button-row" repeat.for="newdice of AddedDice_set_def">
+            <span class="surge-ability-span">
+              <button class="btn dice-button dice-button-brown dice-button-dark"
+                      data-toggle="tooltip"
+                      title="Brown Defence Die Set on blank"
+                      click.delegate="$parent.addDie('brown_set')">
+                  ${$parent.diceCount.brown_set}
+              </button>
+              <button class="btn dice-button dice-button-grey dice-button-light"
+                      data-toggle="tooltip"
+                      title="Grey Defence Die Set on blank"
+                      click.delegate="$parent.addDie('grey_set')">
+                  ${$parent.diceCount.grey_set}
+              </button>
+              <button class="btn dice-button dice-button-black dice-button-dark"
+                      data-toggle="tooltip"
+                      title="Black Defence Die Set on blank"
+                      click.delegate="$parent.addDie('black_set')">
+                  ${$parent.diceCount.black_set}
+              </button>
+
+              <button class="btn btn-default button-cancel"
+                      data-toggle="tooltip"
+                      title="Remove Dice with Reroll"
+                      click.delegate="$parent.removeSetDiceDefence()">
+                  <span class="fa fa-times"></span>
+              </button>
+            </span>
+        </div>
+
+
+
+
         <div class="row calculate-button-row">
             <span class="dice-button-span">
                 <button class="btn btn-default calculate-button" click.delegate="calculateResult()">CALCULATE</button>
@@ -235,7 +395,6 @@
                 </button>
             </span>
         </div>
-
 
         <div class="row calculate-button-row">
           <span class="dice-button-span">
@@ -255,7 +414,7 @@
                         AP
                 </button>
             </div>
-    </div>
+        </div>
 
 <probability-chart title="% Chance to deal (at least) X Damage" x-label="x (or more) total damage dealt" y-label="chance (%)" probability-chart.ref="probabilityChart"/>
 

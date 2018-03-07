@@ -6,8 +6,6 @@ var Dice = (function () {
 }());
 exports.Dice = Dice;
 
-// Doest that make sense here?
-// I need that for the Attribute test
 var Stats = (function () {
    function Stats() {
     }
